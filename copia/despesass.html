@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+
+<body>
+    <!DOCTYPE html>
+    <header class="menu-principal">
+
+        <link rel="stylesheet" type="text/css" href="./css/main.css">
+        <link rel="stylesheet" type="text/css" href="./css/slick.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <title>Controle Recurso Público Escolar</title>
+
+
+
+        <main>
+            <div class="header-1">
+                <div class="logo">
+                    <img src="./img/logo.png" />
+                </div>
+    </header>
+    <main class="col-100 menu-urls">
+        <div class="header-2">
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="./indexx.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="./sobre.html">Sobre  </a>
+                    </li>
+                    <li>
+                        <a href="./grescolar.html">Recursos</a>
+                    </li>
+                    <li>
+                        <a href="./legislacao.html">Legislação</a>
+                    </li>
+                    <li>
+                        <a href="./despesass.html">Controle das Despesas</a>
+                    </li>
+                    <li>
+                        <a href="./prestcontas.html">Prestação de Contas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Controle Financeiro Recursos Públicos$</title>
+
+        <link rel="stylesheet" href="./style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    </head>
+    <body>
+        <header>
+            <img src="./assets/logodesp.jpeg" alt="Logo Dev Finance">
+        </header>
+
+        <main class="container">
+            <section id="balance">
+                <h2 class="sr-only">Balanço</h2>
+
+                <div class="card">
+                    <h3>
+                        <span>
+                            Entradas
+                        </span>
+                        <img src="./assets/income.svg" alt="Image de entradas">
+                    </h3>
+                    <p id="incomeDisplay">R$ 0,00</p>
+                </div>
+
+                <div class="card">
+                    <h3>
+                        <span>
+                            Saídas
+                        </span>
+                        <img src="./assets/expense.svg" alt="Image de saídas">
+                    </h3>
+                    <p id="expenseDisplay">R$ 0,00</p>
+                </div>
+
+                <div class="card total">
+                    <h3>
+                        <span>
+                            Total
+                        </span>
+                        <img src="./assets/total.svg" alt="Image de total">
+                    </h3>
+                    <p id="totalDisplay">R$ 0,00</p>
+                </div>
+
+            </section>
+
+            <section id="options-transactions">
+                <h2 class="sr-only">Transações</h2>
+
+                <a href="#"
+                   onclick="Modal.openSimple()"
+                   class="button new">+ Nova Transação</a>
+                <!--Adicionado a transação parcelada-->
+                <a href="#"
+                   onclick="Modal.openMult()"
+                   class="button new">+ Nova Transação Parcelada</a>
+
+                <!--Adicionado o botão e link para baixar o extrato-->
+
+                <a href="#" class="button extract" onclick="Transaction.extract()">
+                    <img src="./assets/get_app-24px.svg" alt="Gerar Extrato" />
+                    <span>Gerar extrato</span>
+                </a>
+
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                            <th>Data</th>
+                            <th><img onclick="Modal.openFilter()" src="./assets/filtro.png" alt="Filtrar transações"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            </section>
+            <!--Adicionado os gráficos-->
+            <div>
+                <h3 id="title-grafics">Gráficos das Transações</h3>
+            </div>
+            <section id="graphics">
+                <h2 class="sr-only">Gráficos</h2>
+                <div class="card">
+                    <h2 class="sr-only">Gráfico de entradas</h2>
+                    <div id="income_chart_div"></div>
+                </div>
+                <div class="card">
+                    <h2 class="sr-only">Gráfico de saídas</h2>
+                    <div id="expense_chart_div"></div>
+                </div>
+                <div class="card">
+                    <h2 class="sr-only">Gráfico dos totais</h2>
+                    <div id="total_chart_div"></div>
+                </div>
+            </section>
+        </main>
+
+        <div class="modal-overlay simple">
+            <div class="modal">
+                <div id="form">
+                    <h2>Nova Transação</h2>
+                    <form action="" onsubmit="Form.submit(event, 'simple')">
+                        <div class="input-group">
+                            <label class="sr-only"
+                                   for="description">Descrição</label>
+                            <input type="text"
+                                   id="description"
+                                   name="description"
+                                   placeholder="Descrição" />
+                        </div>
+
+                        <div class="input-group">
+                            <label class="sr-only"
+                                   for="amount">Valor</label>
+                            <input type="number"
+                                   step="0.01"
+                                   id="amount"
+                                   name="amount"
+                                   placeholder="0,00" />
+                            <small class="help">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</small>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="sr-only"
+                                   for="date">Data</label>
+                            <input type="date"
+                                   id="date"
+                                   name="date" />
+                        </div>
+
+                        <div class="input-group actions">
+                            <a onclick="Modal.close()"
+                               href="#"
+                               class="button cancel">Cancelar</a>
+                            <button>Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-overlay mult">
+            <div class="modal">
+                <div id="form">
+                    <h2>Nova Transação Parcelada</h2>
+                    <form action="" onsubmit="Form.submit(event, 'mult')">
+                        <div class="input-group">
+                            <label class="sr-only"
+                                   for="descriptionM">Descrição</label>
+                            <input type="text"
+                                   id="descriptionM"
+                                   name="descriptionM"
+                                   placeholder="Descrição" />
+                        </div>
+
+                        <div class="input-group">
+                            <label class="sr-only"
+                                   for="partM">Parcelas</label>
+                            <input type="number"
+                                   step="1"
+                                   id="partM"
+                                   name="partM"
+                                   placeholder="Parcelas" />
+                            <small class="help">O número de parcelas irá se repetir na quantidade e valor informado seguindo o mesmo dia da primeira parcela.</small>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="sr-only"
+                                   for="amountM">Valor</label>
+                            <input type="number"
+                                   step="0.01"
+                                   id="amountM"
+                                   name="amountM"
+                                   placeholder="0,00" />
+                            <small class="help">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais.</small>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="sr-only"
+                                   for="dateM">Data</label>
+                            <input type="date"
+                                   id="dateM"
+                                   name="dateM" />
+                        </div>
+
+                        <div class="input-group actions">
+                            <a onclick="Modal.close()"
+                               href="#"
+                               class="button cancel">Cancelar</a>
+                            <button>Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-overlay edit">
+            <div class="modal">
+                <div id="form">
+                    <h2>Editar Transação</h2>
+                    <form action="" onsubmit="Form.submit(event, 'edit')">
+                        <div class="input-group">
+                            <label class="sr-only"
+                                   for="descriptionE">Descrição</label>
+                            <input type="text"
+                                   id="descriptionE"
+                                   name="descriptionE"
+                                   placeholder="Descrição" />
+                        </div>
+
+                        <div class="input-group">
+                            <input class="sr-only"
+                                   type="number"
+                                   id="idE"
+                                   name="idE" />
+                        </div>
+
+                        <div class="input-group">
+                            <label class="sr-only"
+                                   for="amountE">Valor</label>
+                            <input type="number"
+                                   step="0.01"
+                                   id="amountE"
+                                   name="amountE"
+                                   placeholder="0,00" />
+                            <small class="help">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais.</small>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="sr-only"
+                                   for="dateE">Data</label>
+                            <input type="date"
+                                   id="dateE"
+                                   name="dateE" />
+                        </div>
+
+                        <div class="input-group actions">
+                            <a onclick="Modal.close()"
+                               href="#"
+                               class="button cancel">Cancelar</a>
+                            <button>Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-overlay filter">
+            <div class="modal">
+                <div id="form">
+                    <h2>Filtro</h2>
+                    <form action="" onsubmit="Form.submit(event, 'filter')">
+                        <div class="input-group">
+                            <label for="dateStart">Data Inicial:</label>
+                            <input type="date"
+                                   id="dateStart"
+                                   name="dateStart" />
+                        </div>
+                        <div class="input-group">
+                            <label for="dateEnd">Data Final</label>
+                            <input type="date"
+                                   id="dateEnd"
+                                   name="dateEnd" />
+                        </div>
+                        <hr>
+                        <div class="input-group">
+                            <label for="partM">Itens por página</label>
+                            <input type="number"
+                                   step="1"
+                                   id="itensPerPage"
+                                   name="itensPerPage"
+                                   placeholder="Itens por página"
+                                   min="1" />
+                        </div>
+
+                        <div class="input-group actions">
+                            <a onclick="Modal.close()"
+                               href="#"
+                               class="button cancel">Cancelar</a>
+                            <button>Filtrar</button>
+                        </div>
+
+                        <div class="input-group">
+                            <input class="sr-only"
+                                   type="number"
+                                   id="page"
+                                   name="page" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p></p>
+            <h2>
+                Gestão Financeira de Escolas Públicas <h2>
+                    <h3>Desenvolvido por Projeto Integrador IV - UNIVESP</a><h3>
+        </footer>
+
+        <script src="./scripts.js"></script>
+    </body>
+
+</html>

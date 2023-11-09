@@ -1,0 +1,245 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="generator" content="Bluefish 2.2.6" />
+    <meta charset="utf-8" />
+    <title>Desenvolvimento Aberto</title>
+
+    <style type="text/css">
+        body {
+            font: 62.5% "Trebuchet MS", sans-serif;
+            margin: 50px;
+        }
+
+        #meucheck, #genero {
+            font: 62.5% "Trebuchet MS", sans-serif;
+            margin-top: 1em;
+            width: 50px;
+        }
+
+        #cargo {
+            width: 300px;
+        }
+
+        #cadastro label {
+            width: 250px;
+        }
+
+            #cadastro label.error, #cadastro input.submit {
+                color: darkorange;
+                margin-left: 253px;
+            }
+    </style>
+    <!--
+             Está é uma instalação do JQuery, você apenas precisa apontar
+             para o respectivo script da versão que você deseja utilizar
+
+             jquery.js     = JQuery
+             jquery-ui.js  = JQuery UI
+             jquery-ui.css = JQuery Theme
+        -->
+    <link href="./jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet"
+          type="text/css" />
+    <script type="text/javascript"
+            src="./jquery-ui-1.11.2.custom/external/jquery/jquery.js">
+
+    </script>
+    <script type="text/javascript"
+            src="./jquery-ui-1.11.2.custom/jquery-ui.js">
+
+    </script>
+
+    <!-- JQuery Validator -->
+
+    <script type="text/javascript"
+            src="./js/jquery-validation-1.13.1/dist/jquery.validate.js"></script>
+
+    <!-- Script JQuery - JQuery UI -->
+
+    <script type="text/javascript">
+        // Declara UI e funções JQuery
+
+        $(document).ready(function () {
+
+            // Método de validação
+            $.validator.addMethod("regex", function (value, element, regexp) {
+                var re = new RegExp(regexp);
+                return this.optional(element) || re.test(value);
+            }, "Please check your input.");
+
+            // Cria regras de valicação e customiza mensagens
+
+            $("#cadastro").validate({
+                rules: {
+                    nome: {
+                        required: true,
+                        regex: /[a-zA-Z]+/
+                    },
+                    sobrenome: {
+                        required: true,
+                        regex: /[a-zA-Z]+/
+                    },
+                    cargo: {
+                        required: true,
+                        regex: /[a-zA-Z]+/
+                    },
+                    datepicker: {
+                        required: true
+                    },
+                    salario: {
+                        required: true,
+                        regex: /(?:\d*\.)?\d+/
+                    },
+
+                },
+
+                messages: {
+                    nome: {
+                        required: "O campo nome é obrigatório.",
+                        regex: "Campo suporta somente letras"
+                    },
+                    sobrenome: {
+                        required: "O campo sobrenome é obrigatório.",
+                        regex: "Campo suporta somente letras"
+                    },
+                    cargo: {
+                        required: "O campo cargo é obrigatório.",
+                        regex: "Campo suporta somente letras"
+                    },
+
+                    datepicker: {
+                        required: "O campo data é obrigátorio"
+                    },
+
+                    salario: {
+                        required: "O campo salário é obrigatório.",
+                        regex: "Campo suporta somente decimais"
+                    },
+                },
+            });
+
+            $("#accordion").accordion({
+                heightStyle: "content"
+            }).accordion("option", "icons", null)
+
+            $("#datepicker").datepicker();
+
+            $("#genero").buttonset().find('label').width(100);
+
+            $("#meucheck").buttonset().find('label').width(100);
+
+            $("#abrir").button()
+
+        });
+    </script>
+</head>
+<body>
+    <h1>RELATÓRIO DE INSPEÇÃO CONTROLE DA QUALIDADE CALDEIRAS</h1>
+
+    <h2>Excluir Inspeção</h2>
+    <div id="accordion">
+        <h3>Especificações</h3>
+        <div>
+            <form id="cadastro" method="get" action="resultado.html">
+                <table>
+                    <tr>
+                        <td><label for="nome">Caldeira:</label></td>
+                        <td>
+                            <input id="nome" name="nome" size="50" required>
+                            <br>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="sobrenome">Número do Relatório:</label></td>
+                        <td>
+                            <input id="sobrenome" name="sobrenome" size="35" required>
+                            <br>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="cargo">Tipo Inspeção:</label></td>
+                        <td>
+                            <select id="cargo" name="cargo" required>
+                                <option value="Vocalista">Inicial</option>
+                                <option value="Guitarrista">Periódica</option>
+                                <option value="Baixista">Extraordinária</option>
+                                <option value="Baterista">Preventiva</option>
+                            </select>
+                    </tr>
+
+                    <tr>
+                        <td><label for="datepicker">Data inicio da inspeção:</label></td>
+                        <td><input type="text" id="datepicker" name="data" required></td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="datepicker1">Data final da inspeção:</label></td>
+                        <td><input type="text" id="datepicker1" name="data" required></td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="teste">Teste Hidrostático:</label></td>
+                        <td>
+                            <input id="teste" name="teste" size="200" required>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="recomendacao">Recomendações da inspeção:</label></td>
+                        <td>
+                            <input id="recomendacao" name="recomendacao" size="200" required>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="conclusao">Conclusão:</label></td>
+                        <td>
+                            <input id="conclusao" name="conclusao" size="200" required>
+                            <br>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td><label for="genero">Possui Certificado de Treinamento de segurança na Operação de Caldeiras:</label></td>
+                        <td>
+                            <div id="genero">
+                                <input type="radio" id="radio1" name="genero"><label for="radio1">SIM</label> <input type="radio" id="radio2"
+                                                                                                                     name="genero"><label for="radio2">NÃO</label>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><label>Equipamento Ativo:</label></td>
+                        <td>
+                            <div id="meucheck">
+                                <input type="checkbox" id="ativo" name="ativo"><label for="ativo">Situação</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="datepicker2">Data Próxima da Inspeção:</label></td>
+                        <td><input type="text" id="datepicker2" name="data" required></td>
+                    </tr>
+
+                    <tr>
+
+                        <td><label for="observacao">Condições e especificações do equipamento:</label></td>
+                        <td>
+                            <textarea id="observacao" name="observacao" rows="15"
+                                      cols="120"></textarea>
+                        </td>
+
+                    </tr>
+
+                </table>
+                <br>
+                <button id="abrir" type="submit">Enviar Dados</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

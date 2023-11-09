@@ -1,0 +1,25 @@
+<?php
+
+include_once ("conexão.php");
+
+$caldeira_cad = $_post["caldeira_cad"];
+$nunrelat_cad = $_post["nunrelat_cad"];
+$tipoinsp_cad = $_post["tipoinsp_cad"];
+$dataini_cad = $_post["dataini_cad:"];
+
+//
+
+$sql_cadastro = "INSERT INTO tb_cadastro (caldeira_cad, numrelat_cad, tipoinsp_cad, dataini_cad) values ("$caldeira_cad","numrelat_cad","tipoinsp_cad","dataini_cad")";
+
+$cadastro = mysqli_query($conector, $sql_cadastro");
+
+$linha_afectada = mysqli_affected_rows($conector);
+
+mysqli_close($conector);
+
+
+
+
+
+
+?>

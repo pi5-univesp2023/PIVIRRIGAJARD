@@ -1,0 +1,109 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="generator" content="Bluefish 2.2.6" />
+    <meta charset="utf-8" />
+    <title>Desenvolvimento Aberto</title>
+
+    <style type="text/css">
+        body {
+            font: 62.5% "Trebuchet MS", sans-serif;
+            margin: 50px;
+        }
+    </style>
+    <!--
+             Está é uma instalação do JQuery, você apenas precisa apontar
+             para o respectivo script da versão que você deseja utilizar
+
+             jquery.js     = JQuery
+             jquery-ui.js  = JQuery UI
+             jquery-ui.css = JQuery Theme
+        -->
+    <link href="./jquery-ui-1.11.2.custom/jquery-ui.css" rel="stylesheet"
+          type="text/css" />
+    <script type="text/javascript"
+            src="./jquery-ui-1.11.2.custom/external/jquery/jquery.js">
+
+    </script>
+    <script type="text/javascript"
+            src="./jquery-ui-1.11.2.custom/jquery-ui.js">
+
+    </script>
+    <!-- Script JQuery - JQuery UI -->
+
+    <script type="text/javascript">
+        // Declara UI e funções JQuery
+        $(document).ready(
+            function () {
+
+                $("#accordion").accordion({
+                    heightStyle: "content"
+                }).accordion("option", "icons", null)
+
+                $("#abrir").button()
+
+                $("#dialog").dialog({
+                    autoOpen: false,
+                    show: {
+                        effect: "blind",
+                        duration: 1000
+                    },
+
+                    hide: {
+                        effect: "blind",
+                        duration: 1000
+                    }
+
+                });
+
+                $("#abrir").click(
+                    function () {
+
+                        $("#dialog").html(
+                            "Você digitou: <br><br>" + "Nome:      "
+                            + $("#nome").val() + "<br>"
+                            + "Sobrenome: "
+                            + $("#sobrenome").val() + "<br>"
+                            + "Cargo:     " + $("#cargo").val()
+                            + "<br>" + "Salario:   "
+                            + $("#salario").val())
+
+                        $("#dialog").dialog("open");
+
+                    });
+
+            });
+    </script>
+
+    <h1>Desenvolvimento Aberto - JQuery - UI</h1>
+
+    <h2>Accordion - Dialog - Button</h2>
+    <div id="accordion">
+        <h3>Cadastro</h3>
+        <div>
+            <table>
+                <tr>
+                    <td><label for="nome">Nome:</label></td>
+                    <td><input id="nome" size="27" /> <br></td>
+                </tr>
+                <tr>
+                    <td><label for="sobrenome">Sobrenome:</label></td>
+                    <td><input id="sobrenome" size="35" /> <br></td>
+                </tr>
+                <tr>
+                    <td><label for="cargo">Cargo:</label></td>
+                    <td><input id="cargo" size="28" /> <br></td>
+                </tr>
+                <tr>
+                    <td><label for="salario">Salario:</label></td>
+                    <td><input id="salario" size="18" /> <br></td>
+                </tr>
+            </table>
+            <br>
+            <button id="abrir">Enviar Dados</button>
+        </div>
+    </div>
+    <div id="dialog" title="Resultado">
+        <p></p>
+    </div>
+</body>
+</html>
